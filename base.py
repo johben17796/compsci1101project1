@@ -1,5 +1,6 @@
-print("test")
-print("Hi my name is Garrett")
-print("Hi Garrett it's Ollie")
-print("Ugh")
-print("I'm the goat")
+"""
+CSCI1101 Quiz Project
+By Ben, Garrett, and Ollie
+We're going to do a Jeopardy style quiz, where you answer questions from categories you've selected to earn a total of $(specify amount)
+"""
+
