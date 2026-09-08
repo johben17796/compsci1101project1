@@ -9,12 +9,41 @@ print("Wonders")
 print("Food")
 print("Books")
 print("Please type your category exactly. Capitalization matters!")
+
+money: int = 0
+
 cat_select: str = input()
 if cat_select == "Wonders":
     print("You've selected Wonders!")
+    print("Please choose a $ amount question!")
+    print("100")
+    print("200")
+    print("300")
+    print("400")
+    print("500")
 elif cat_select == "Food":
     print("You've selected Food!")
+    print("Please choose a $ amount question!")
+    print("100")
+    print("200")
+    print("300")
+    print("400")
+    print("500")
 elif cat_select == "Books":
     print("You've selected Books!")
+    print("Please choose a $ amount question!")
+    print("100")
+    print("200")
+    print("300")
+    print("400")
+    print("500")
 else:
-    print("Please choose a category!")
+    print("Please restart and choose a category!")
+
+dol_select: int = int(input())
+if dol_select == 100 and cat_select == "Wonders":
+    Won100: str = input("What is the wonder in Egypt? ")
+    if Won100 == ("Pyramid"):
+        print("Correct!")
+        money += 100
+        print(money)
