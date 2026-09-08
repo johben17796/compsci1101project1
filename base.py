@@ -1,2 +1,5 @@
 print("test")
 print("Hi my name is Garrett")
+print("Hi Garrett it's Ollie")
+print("Ugh")
+print("I'm the goat")
