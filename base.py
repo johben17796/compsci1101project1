@@ -12,23 +12,37 @@ print("Welcome to Jeopardy! Your goal is to collect $(unspecified) by answering 
 print("Wonders")
 print("Food")
 print("Books")
+print("Pop Culture")
+print("Music")
 print("Please type your category exactly. Capitalization matters!")
 
 money: int = 0
 # Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer.
-wonders: dict = {
+wonders: dict[str, tuple[str, str]] = {
     "100": ("What is the wonder in Egypt?", "Pyramid"),
-    "200": (),
-    "300": (),
-    "400": (),
-    "500": ()}
-food: dict = {
+    "200": ("What is the wonder in Egypt?", "Pyramid"),
+    "300": ("What is the wonder in Egypt?", "Pyramid"),
+    "400": ("What is the wonder in Egypt?", "Pyramid"),
+    "500": ("What is the wonder in Egypt?", "Pyramid")}
+food: dict[str, tuple[str, str]] = {
     "100": (),
     "200": (),
     "300": (),
     "400": (),
     "500": ()}
-books: dict = {
+books: dict[str, tuple[str, str]] = {
+    "100": (),
+    "200": (),
+    "300": (),
+    "400": (),
+    "500": ()}
+pop_culture: dict[str, tuple[str, str]] = {
+    "100": (),
+    "200": (),
+    "300": (),
+    "400": (),
+    "500": ()}
+music: dict[str, tuple[str, str]] = {
     "100": (),
     "200": (),
     "300": (),
@@ -39,7 +53,7 @@ category: str = input()
 if category == "Wonders":
     print("You've selected Wonders!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
 elif category == "Food":
-    print("You've selected Food!\nPlease choose a $ amount question!\n100200\n\n300\n400\n500")
+    print("You've selected Food!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
 elif category == "Books":
     print("You've selected Books!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
 else:
@@ -48,10 +62,11 @@ else:
 dollars: str = input()
 match category:
     case "Wonders":
-        question: tuple = wonders.get(dollars)
+        question: tuple[str, str] = wonders.get(dollars)
         answer: str = input(question[0] + " ")
         if answer == question[1]:
-            money += int(dollars)
+            money += int(dollars) # adds money if correct
+        else money -= int(dollars) # decrements if wrong
             print(f"Correct! You now have {dollars} dollars.")
     # Fill in these other 2 later
     case "Food":
@@ -59,4 +74,4 @@ match category:
     case "Books":
         print("a")
     case _: 
-        print("Please select either Wonders, Food, or Books!")
+        print("Please select either Wonders, Food, Books, Pop Culture, or Music!")
