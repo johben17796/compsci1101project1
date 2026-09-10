@@ -14,29 +14,11 @@ money: int = 0
 
 cat_select: str = input()
 if cat_select == "Wonders":
-    print("You've selected Wonders!")
-    print("Please choose a $ amount question!")
-    print("100")
-    print("200")
-    print("300")
-    print("400")
-    print("500")
+    print("You've selected Wonders!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
 elif cat_select == "Food":
-    print("You've selected Food!")
-    print("Please choose a $ amount question!")
-    print("100")
-    print("200")
-    print("300")
-    print("400")
-    print("500")
+    print("You've selected Food!\nPlease choose a $ amount question!\n100200\n\n300\n400\n500")
 elif cat_select == "Books":
-    print("You've selected Books!")
-    print("Please choose a $ amount question!")
-    print("100")
-    print("200")
-    print("300")
-    print("400")
-    print("500")
+    print("You've selected Books!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
 else:
     print("Please restart and choose a category!")
 
