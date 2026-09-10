@@ -51,7 +51,8 @@ match category:
         question: tuple = wonders.get(dollars)
         answer: str = input(question[0] + " ")
         if answer == question[1]:
-            money += int(dollars)
+            money += int(dollars) # increments the amount if correct
+        else: money -= int(dollars) # and decrements if wrong.
             print(f"Correct! You now have {dollars} dollars.")
     # Fill in these other 2 later
     case "Food":
