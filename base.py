@@ -1,11 +1,12 @@
 """
-CSCI1101 Quiz Project
-By Ben, Garrett, and Ollie
-We're going to do a Jeopardy style quiz, where you answer questions from categories you've selected to earn a total of $(specify amount)
-sources used for learning: 
-https://docs.python.org/3/tutorial/datastructures.html
-https://docs.python.org/3/library/stdtypes.html
-https://www.geeksforgeeks.org/python/switch-case-in-python-replacement/
+    CSCI1101 Quiz Project
+    By Ben, Garrett, and Ollie
+    We're going to do a Jeopardy style quiz, where you answer questions from categories you've selected to earn a total of $(specify amount)
+    sources used for learning: 
+    https://docs.python.org/3/tutorial/datastructures.html
+    https://docs.python.org/3/library/stdtypes.html
+    https://www.geeksforgeeks.org/python/switch-case-in-python-replacement/
+    https://www.w3schools.com/python/ref_keyword_in.asp 
 """
 
 print("Welcome to Jeopardy! Your goal is to collect $(unspecified) by answering questions correctly! Your categories are")
