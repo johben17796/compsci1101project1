@@ -19,35 +19,35 @@ print("Please type your category exactly. Capitalization matters!")
 money: int = 0
 # Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer.
 wonders: dict[str, tuple[str, str]] = {
-    "100": ("What is the wonder in Egypt?", "Pyramid"),
-    "200": ("What is the wonder in Egypt?", "Pyramid"),
-    "300": ("What is the wonder in Egypt?", "Pyramid"),
-    "400": ("What is the wonder in Egypt?", "Pyramid"),
-    "500": ("What is the wonder in Egypt?", "Pyramid")}
+    "100": ("The ancient wonder in Egypt", "pyramid"),
+    "200": ("s","s"),
+    "300": ("s","s"),
+    "400": ("s","s"),
+    "500": ("What year were the Hanging Gardens of Babylon Created?", "600 B.C.")}
 food: dict[str, tuple[str, str]] = {
-    "100": (),
-    "200": (),
-    "300": (),
-    "400": (),
-    "500": ()}
+    "100": ("s","s"),
+    "200": ("The hamburger's country of origin","What is Germany"),
+    "300": ("s","s"),
+    "400": ("s","s"),
+    "500": ("s","s")}
 books: dict[str, tuple[str, str]] = {
-    "100": (),
-    "200": (),
-    "300": (),
-    "400": (),
-    "500": ()}
+    "100": ("s","s"),
+    "200": ("s","s"),
+    "300": ("s","s"),
+    "400": ("s","s"),
+    "500": ("s","s")}
 pop_culture: dict[str, tuple[str, str]] = {
-    "100": (),
-    "200": (),
-    "300": (),
-    "400": (),
-    "500": ()}
+    "100": ("s","s"),
+    "200": ("s","s"),
+    "300": ("s","s"),
+    "400": ("s","s"),
+    "500": ("s","s")}
 music: dict[str, tuple[str, str]] = {
-    "100": (),
-    "200": (),
-    "300": (),
-    "400": (),
-    "500": ()}
+    "100": ("s","s"),
+    "200": ("s","s"),
+    "300": ("s","s"),
+    "400": ("s","s"),
+    "500": ("s","s")}
 
 category: str = input()
 if category == "Wonders":
@@ -64,11 +64,13 @@ match category:
     case "Wonders":
         question: tuple[str, str] = wonders.get(dollars)
         answer: str = input(question[0] + " ")
-        if answer == question[1]:
+        if question[1] in answer:
             money += int(dollars) # increments the amount if correct
-        else: money -= int(dollars) # and decrements if wrong.
-            print(f"Correct! You now have {dollars} dollars.")
-    # Fill in these other 2 later
+            print(f"Correct! You now have {money} dollars.")
+        else: 
+            money -= int(dollars)
+            print(f"Incorrect! You now have {money} dollars.")
+    # Fill in these other 4 later
     case "Food":
         print("a")
     case "Books":
