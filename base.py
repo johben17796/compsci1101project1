@@ -28,29 +28,33 @@ wonders: dict[str, tuple[str, str]] = {
     "400": ("He's the 8th wonder of the world:", "andre"),
     "500": ("The wondrous statue of this god was erected by Phidias:", "zeus")}
 food: dict[str, tuple[str, str]] = {
-    "100": ("A common fried potato product is named for this country:", "france"),
+    "100": ("A common fried potato product is named for this country:\n", "france"),
     "200": ("", ""),
-    "300": ("s", "s"),
+    "300": ("Hummus is primarily made from this legume, contrary to its name, it does not contain any poultry\n", "chickpea"),
     "400": ("s", "s"),
     "500": ("s", "s")}
+
 books: dict[str, tuple[str, str]] = {
-    "100": ("With total sales reaching over 5 billion, this book has the most purchases of all time:", "bible"),
+    "100": ("With total sales reaching over 5 billion, this book has the most purchases of all time:\n", "bible"),
     "200": ("s", "s"),
     "300": ("s", "s"),
-    "400": ("s", "s"),
+    "400": ("This Dickens novel revolves around an orphan named Pip\n", "great expectations"),
     "500": ("s", "s")}
+
 pop_culture: dict[str, tuple[str, str]] = {
-    "100": ("s", "s"),
-    "200": ("Named for a comic, this Spider-Man movie released July of 2026:", "brand new day"),
-    "300": ("s", "s"),
+    "100": ("This Vikings quarterback suffered a concussion in week 1 of the 2026 season", "murray"),
+    "200": ("Named for a comic, this Spider-Man movie released July of 2026:\n", "brand new day"),
+    "300": ("This legendary country musician with her own theme park passed away in August of 2026\n", "parton"),
     "400": ("s", "s"),
-    "500": ("s", "s")}
+    "500": ("A former Timberwolf, he won the 2026 NBA championship with the New York Knicks. \nand then got married in the summer! \n", "towns")}
+
 music: dict[str, tuple[str, str]] = {
-    "100": ("Not the son of a king, but this musician:", "prince"),
-    "200": ("Band named for a horror movie that was released in 1963:", "black sabbath"),
+    "100": ("Not the son of a king, but this musician: \n", "prince"),
+    "200": ("Band named for a horror movie that was released in 1963:\n", "black sabbath"),
     "300": ("s", "s"),
-    "400": ("Band named for a horror movie that was released in 1963:", "black sabbath"),
-    "500": ("s", "s")}
+    "400": ("", ""),
+    "500": ("This band released the song Seven Wonders in 1987.\n They likely had more than seven break-ups\n", "Fleetwood Mac")}
+
 
 category: str = input()
 if category == "wonders":
