@@ -5,7 +5,7 @@ We're going to do a Jeopardy style quiz, where you answer questions from categor
 sources used for learning: 
 https://docs.python.org/3/tutorial/datastructures.html
 https://docs.python.org/3/library/stdtypes.html
-https://www.geeksforgeeks.org/python/switch-case-in-python-replacement/
+https://docs.python.org/3/tutorial/controlflow.html
 """
 
 print("Welcome to Jeopardy! Your goal is to collect $(unspecified) by answering questions correctly! Your categories are:")
@@ -16,6 +16,7 @@ print("Pop Culture")
 print("Music")
 print("--Please type all inputs for this game in full lowercase and with exact spelling--")
 
+answered_questions: list[str] = []
 money: int = 0
 """
  Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
@@ -66,24 +67,33 @@ else:
     print("Please restart and choose a category!")
 
 dollars: str = input()
+if (category + dollars) in answered_questions:
+    # TODO: give an error message and send the player back to the start of the loop
+    quit()
+
+def ask_question(dictionary: dict):
+    question: tuple[str, str] = dictionary.get(dollars)
+    answer: str = input(question[0] + " ")
+    reward: int = 0
+    if question[1] in answer.lower():
+        reward += int(dollars)
+        print(f"Correct! You now have {money + reward} dollars.")
+    else:
+        reward -= int(dollars)
+        print(f"Incorrect! You now have {money + reward} dollars.")
+    answered_questions.append(category + dollars)
+    return reward
+
 match category:
-    case "wonders":
-        question: tuple[str, str] = wonders.get(dollars)
-        answer: str = input(question[0] + " ")
-        if question[1] in answer:
-            money += int(dollars) # increments the amount if correct
-            print(f"Correct! You now have {money} dollars.")
-        else:
-            money -= int(dollars)
-            print(f"Incorrect! You now have {money} dollars.")
-    # Fill in these other 4 later
-    case "food":
-        print("a")
-    case "books":
-        print("a")
+    case "Wonders":
+        money += ask_question(wonders)
+    case "Food":
+        money += ask_question(food)
+    case "Books":
+        money += ask_question(books)
     case "pop culture":
-        print("a")
+        money += ask_question(pop_culture)
     case "music":
-        print("a")
+        money += ask_question(music)
     case _:
-        print('Please select either "wonders", "food", "books", "pop culture", or "music"!')
+        print("Please select either Wonders, Food, Books, Pop Culture, or Music!")
