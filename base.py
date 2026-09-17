@@ -12,38 +12,38 @@ https://docs.python.org/3/tutorial/controlflow.html
  Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
 """
 wonders: dict[str, tuple[str, str]] = {
-    "100": ("The ancient wonder in Egypt:", "pyramid"),
-    "200": ("The place the hanging gardens were:", "babylon"),
-    "300": ("It spans 13,000 miles:", "wall"),
-    "400": ("He's the 8th wonder of the world:", "andre"),
-    "500": ("The wondrous statue of this god was erected by Phidias:", "zeus")}
+    "100": ("The ancient wonder in Egypt:\n", "pyramid"),
+    "200": ("The place the hanging gardens were:\n", "babylon"),
+    "300": ("It spans 13,000 miles:\n", "wall"),
+    "400": ("He's the 8th wonder of the world:\n", "andre"),
+    "500": ("The wondrous statue of this god was erected by Phidias:\n", "zeus")}
 food: dict[str, tuple[str, str]] = {
     "100": ("A common fried potato product is named for this country:\n", "france"),
-    "200": ("", ""),
-    "300": ("Hummus is primarily made from this legume, contrary to its name, it does not contain any poultry\n", "chickpea"),
+    "200": ("s", "s"),
+    "300": ("Hummus is primarily made from this legume, contrary to its name, it does not contain any poultry:\n", "chickpea"),
     "400": ("s", "s"),
     "500": ("s", "s")}
 
 books: dict[str, tuple[str, str]] = {
     "100": ("With total sales reaching over 5 billion, this book has the most purchases of all time:\n", "bible"),
     "200": ("s", "s"),
-    "300": ("s", "s"),
-    "400": ("This Dickens novel revolves around an orphan named Pip\n", "great expectations"),
-    "500": ("s", "s")}
+    "300": ("This graphic novel talks of a Greek army facing insurmountable odds:\n", "300"),
+    "400": ("This Dickens novel revolves around an orphan named Pip:\n", "great expectations"),
+    "500": ("His book about the things that make people successful is read in many a high school English class:\n", "gladwell")}
 
 pop_culture: dict[str, tuple[str, str]] = {
-    "100": ("This Vikings quarterback suffered a concussion in week 1 of the 2026 season", "murray"),
+    "100": ("This Vikings quarterback suffered a concussion in week 1 of the 2026 season:\n", "murray"),
     "200": ("Named for a comic, this Spider-Man movie released July of 2026:\n", "brand new day"),
-    "300": ("This legendary country musician with her own theme park passed away in August of 2026\n", "parton"),
-    "400": ("s", "s"),
-    "500": ("A former Timberwolf, he won the 2026 NBA championship with the New York Knicks. \nand then got married in the summer! \n", "towns")}
+    "300": ("This legendary country musician with her own theme park passed away in August of 2026:\n", "parton"),
+    "400": ("A former Timberwolf, he won the 2026 NBA championship with the New York Knicks. \nand then got married in the summer!:\n", "towns"),
+    "500": ("Unironically Dave Strider's creator:\n", "hussie")}
 
 music: dict[str, tuple[str, str]] = {
     "100": ("Not the son of a king, but this musician: \n", "prince"),
     "200": ("Band named for a horror movie that was released in 1963:\n", "black sabbath"),
     "300": ("s", "s"),
-    "400": ("", ""),
-    "500": ("This band released the song Seven Wonders in 1987.\n They likely had more than seven break-ups\n", "Fleetwood Mac")}
+    "400": ('"Never forget." Not this tragic day, but this other important September date:\n', "21"),
+    "500": ("This band released the song Seven Wonders in 1987.\n They likely had more than seven break-ups:\n", "fleetwood mac")}
 
 
 categories: dict[str, dict] = {
