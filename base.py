@@ -1,7 +1,7 @@
 """
 CSCI1101 Quiz Project
 By Ben, Garrett, and Ollie
-We're going to do a Jeopardy style quiz, where you answer questions from categories you've selected to earn a total of $(specify amount)
+We're going to do a Jeopardy style quiz, where you answer questions from categories you've selected to earn a total of $4500
 sources used for learning: 
 https://docs.python.org/3/tutorial/datastructures.html
 https://docs.python.org/3/library/stdtypes.html
@@ -91,7 +91,7 @@ def ask_question(dictionary: dict):
     return reward
 
 first_time: bool = True
-while True:
+while money < 4500 and len(categories) > 0:
     if first_time:
         print("+----------------------------------------------------------------+")
         print("|   Welcome to Jeopardy! Collect as much money as possible by    |")
@@ -111,4 +111,7 @@ while True:
             break
         print("Please select either Wonders, Food, Books, Pop Culture, or Music!")
     money += ask_question(categories.get(category))
-print(f"Congratulations! You have reached the end of Jeopardy. You finished with a grand total of {money} dollars!")
+if money >= 4500:
+    print(f"Congratulations! You have reached the end of Jeopardy. You finished with a grand total of {money} dollars!")
+else:
+    print(f"You lose! You only made {money} dollars.")
