@@ -71,7 +71,9 @@ def ask_dollar_amount(dictionary: dict):
         output = input("> ")
         if output in dictionary:
             break
-        print("Please choose a number shown above!")
+        print("+-------------+-----------+-----------+-----------+--------------+")
+        print("|               Please choose a number shown above               |")
+        print("+-------------+-----------+-----------+-----------+--------------+")
     return output
 
 def ask_question(dictionary: dict):
@@ -114,4 +116,4 @@ while money < 4500 and len(categories) > 0:
 if money >= 4500:
     print(f"Congratulations! You have reached the end of Jeopardy. You finished with a grand total of {money} dollars!")
 else:
-    print(f"You lose! You only made {money} dollars.")
+    print(f"You lose!\nYou ran out of questions and only made {money} dollars.")
