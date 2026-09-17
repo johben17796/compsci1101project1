@@ -8,16 +8,6 @@ https://docs.python.org/3/library/stdtypes.html
 https://docs.python.org/3/tutorial/controlflow.html
 """
 
-print("Welcome to Jeopardy! Your goal is to collect $(unspecified) by answering questions correctly! Your categories are:")
-print("Wonders")
-print("Food")
-print("Books")
-print("Pop Culture")
-print("Music")
-print("--Please type all inputs for this game in full lowercase and with exact spelling--")
-
-answered_questions: list[str] = []
-money: int = 0
 """
  Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
 """
@@ -56,48 +46,68 @@ music: dict[str, tuple[str, str]] = {
     "500": ("This band released the song Seven Wonders in 1987.\n They likely had more than seven break-ups\n", "Fleetwood Mac")}
 
 
-category: str = input()
-if category == "wonders":
-    print("You've selected Wonders!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
-elif category == "food":
-    print("You've selected Food!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
-elif category == "books":
-    print("You've selected Books!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
-elif category == "pop culture":
-    print("You've selected Pop Culture!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
-elif category == "music":
-    print("You've selected Music!\nPlease choose a $ amount question!\n100\n200\n300\n400\n500")
-else:
-    print("Please restart and choose a category!")
+categories: dict[str, dict] = {
+    "wonders": wonders,
+    "food": food,
+    "books": books,
+    "pop culture": pop_culture,
+    "music": music}
+money: int = 0
 
-dollars: str = input()
-if (category + dollars) in answered_questions:
-    # TODO: give an error message and send the player back to the start of the loop
-    quit()
+def ask_dollar_amount(dictionary: dict):
+    numbers: str = "|      100    |    200    |    300    |    400    |    500       |"
+    # Blank out the dollar amounts for already answered questions
+    for i in range(5):
+        if f"{(i + 1) * 100}" not in dictionary:
+            numbers = numbers.replace(f"{(i + 1) * 100}", "---")
+    print("+----------------------------------------------------------------+")
+    print("|   Now, please choose a $ amount question. Your options are:    |")
+    print("+-------------+-----------+-----------+-----------+--------------+")
+    print(numbers)
+    print("+-------------+-----------+-----------+-----------+--------------+")
+    output: str = ""
+    while True:
+        output = input("> ")
+        if output in dictionary:
+            break
+        print("Please choose a number shown above!")
+    return output
 
 def ask_question(dictionary: dict):
-    question: tuple[str, str] = dictionary.get(dollars)
+    dollars: str = ask_dollar_amount(dictionary)
+    question: tuple[str, str] = dictionary.pop(dollars)
     answer: str = input(question[0] + " ")
     reward: int = 0
+
     if question[1] in answer.lower():
         reward += int(dollars)
         print(f"Correct! You now have {money + reward} dollars.")
     else:
         reward -= int(dollars)
         print(f"Incorrect! You now have {money + reward} dollars.")
-    answered_questions.append(category + dollars)
+    if len(dictionary) == 0:
+        categories.pop(dictionary)
     return reward
 
-match category:
-    case "Wonders":
-        money += ask_question(wonders)
-    case "Food":
-        money += ask_question(food)
-    case "Books":
-        money += ask_question(books)
-    case "pop culture":
-        money += ask_question(pop_culture)
-    case "music":
-        money += ask_question(music)
-    case _:
+first_time: bool = True
+while True:
+    if first_time:
+        print("+----------------------------------------------------------------+")
+        print("|   Welcome to Jeopardy! Collect as much money as possible by    |")
+        print("|     answering questions correctly! Your categories are:        |")
+        first_time = False
+    else:
+        print("+----------------------------------------------------------------+")
+        print("|         Welcome back to Jeopardy! Your categories are:         |")
+    print("+------------------+------+-------+-------------+----------------+")
+    print("|          Wonders | Food | Books | Pop Culture | Music          |")
+    print("+------------------+------+-------+-------------+----------------+")
+
+    category: str = ""
+    while True:
+        category = input("> ").lower()
+        if category in categories:
+            break
         print("Please select either Wonders, Food, Books, Pop Culture, or Music!")
+    money += ask_question(categories.get(category))
+print(f"Congratulations! You have reached the end of Jeopardy. You finished with a grand total of {money} dollars!")
