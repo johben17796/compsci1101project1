@@ -66,6 +66,7 @@ def ask_dollar_amount(dictionary: dict):
     print("+-------------+-----------+-----------+-----------+--------------+")
     print(numbers)
     print("+-------------+-----------+-----------+-----------+--------------+")
+    # Prompt user for the dollar amount, looping back if it is unavailable
     output: str = ""
     while True:
         output = input("> ")
@@ -76,20 +77,20 @@ def ask_dollar_amount(dictionary: dict):
         print("+-------------+-----------+-----------+-----------+--------------+")
     return output
 
-def ask_question(dictionary: dict):
+def ask_question():
+    dictionary: dict = categories.get(category)
     dollars: str = ask_dollar_amount(dictionary)
     question: tuple[str, str] = dictionary.pop(dollars)
+    reward: int = 0
     answer: str = input(question[0] + " ")
     reward: int = 0
 
-    if question[1] in answer.lower(): #  Lets the user's answer be lenient.
+    if question[1] in answer.lower():
         reward += int(dollars)
         print(f"Correct! You now have {money + reward} dollars.")
     else:
         reward -= int(dollars)
         print(f"Incorrect! You now have {money + reward} dollars.")
-    if len(dictionary) == 0:
-        categories.pop(dictionary)
     return reward
 
 first_time: bool = True
@@ -103,16 +104,20 @@ while money < 4500 and len(categories) > 0:
         print("+----------------------------------------------------------------+")
         print("|         Welcome back to Jeopardy! Your categories are:         |")
     print("+------------------+------+-------+-------------+----------------+")
-    print("|          Wonders | Food | Books | Pop Culture | Music          |")
+    cat: str = "|          Wonders | Food | Books | Pop Culture | Music          |"
+    for i, category_name in enumerate(categories):
+        if len(categories.get(category_name)) == 0:
+            cat = cat.lower().replace(category_name, "-" * len(category_name))
+    print(cat)
     print("+------------------+------+-------+-------------+----------------+")
-
+    # Prompt user for the category, looping back if it doesn't match a category
     category: str = ""
     while True:
         category = input("> ").lower()
-        if category in categories:
+        if category in categories and len(categories.get(category)) > 0:
             break
-        print("Please select either Wonders, Food, Books, Pop Culture, or Music!")
-    money += ask_question(categories.get(category))
+        print("Please input a valid category as shown above!")
+    money += ask_question()
 if money >= 4500:
     print(f"Congratulations! You have reached the end of Jeopardy. You finished with a grand total of {money} dollars!")
 else:
