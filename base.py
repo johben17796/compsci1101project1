@@ -17,16 +17,17 @@ wonders: dict[str, tuple[str, str]] = {
     "300": ("It spans 13,000 miles:\n", "wall"),
     "400": ("He's the 8th wonder of the world:\n", "andre"),
     "500": ("The wondrous statue of this god was erected by Phidias:\n", "zeus")}
+
 food: dict[str, tuple[str, str]] = {
     "100": ("A common fried potato product is named for this country:\n", "france"),
-    "200": ("s", "s"),
+    "200": ("The Elvis sandwich usually contains peanut butter and this:\n", "banana"),
     "300": ("Hummus is primarily made from this legume, contrary to its name, it does not contain any poultry:\n", "chickpea"),
-    "400": ("s", "s"),
-    "500": ("s", "s")}
+    "400": ("This cheese is made backwards:\n", "edam"),
+    "500": ("A tangelo is a cross between a tangerine and this ancestor of the grapefruit:\n", "pomelo")}
 
 books: dict[str, tuple[str, str]] = {
     "100": ("With total sales reaching over 5 billion, this book has the most purchases of all time:\n", "bible"),
-    "200": ("s", "s"),
+    "200": ("He asks us to call him \"Ishmael\", but this is what his name actually is:\n", "ahab"),
     "300": ("This graphic novel talks of a Greek army facing insurmountable odds:\n", "300"),
     "400": ("This Dickens novel revolves around an orphan named Pip:\n", "great expectations"),
     "500": ("His book about the things that make people successful is read in many a high school English class:\n", "gladwell")}
@@ -41,7 +42,7 @@ pop_culture: dict[str, tuple[str, str]] = {
 music: dict[str, tuple[str, str]] = {
     "100": ("Not the son of a king, but this musician: \n", "prince"),
     "200": ("Band named for a horror movie that was released in 1963:\n", "black sabbath"),
-    "300": ("s", "s"),
+    "300": ("Both Joan Jett and Thin Lizzy have a bad \"this\"\n, Taylor Swift had an era named after it", "reputation"),
     "400": ('"Never forget." Not this tragic day, but this other important September date:\n', "21"),
     "500": ("This band released the song Seven Wonders in 1987.\n They likely had more than seven break-ups:\n", "fleetwood mac")}
 
@@ -79,7 +80,7 @@ def ask_question(dictionary: dict):
     answer: str = input(question[0] + " ")
     reward: int = 0
 
-    if question[1] in answer.lower():
+    if question[1] in answer.lower(): #  Lets the user's answer be lenient.
         reward += int(dollars)
         print(f"Correct! You now have {money + reward} dollars.")
     else:
