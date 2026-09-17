@@ -9,13 +9,13 @@ https://docs.python.org/3/tutorial/controlflow.html
 """
 
 """
- Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
+Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
 """
 wonders: dict[str, tuple[str, str]] = {
-    "100": ("The ancient wonder in Egypt:\n", "pyramid"),
-    "200": ("The place the hanging gardens were:\n", "babylon"),
-    "300": ("It spans 13,000 miles:\n", "wall"),
-    "400": ("He's the 8th wonder of the world:\n", "andre"),
+    # "100": ("The ancient wonder in Egypt:\n", "pyramid"),
+    # "200": ("The place the hanging gardens were:\n", "babylon"),
+    # "300": ("It spans 13,000 miles:\n", "wall"),
+    # "400": ("He's the 8th wonder of the world:\n", "andre"),
     "500": ("The wondrous statue of this god was erected by Phidias:\n", "zeus")}
 
 food: dict[str, tuple[str, str]] = {
@@ -47,7 +47,7 @@ music: dict[str, tuple[str, str]] = {
     "500": ("This band released the song Seven Wonders in 1987.\n They likely had more than seven break-ups:\n", "fleetwood mac")}
 
 
-categories: dict[str, dict] = {
+categories: dict[str, dict[str, tuple[str, str]]] = {
     "wonders": wonders,
     "food": food,
     "books": books,
@@ -80,7 +80,7 @@ def ask_dollar_amount(dictionary: dict):
 def ask_question():
     dictionary: dict = categories.get(category)
     dollars: str = ask_dollar_amount(dictionary)
-    question: tuple[str, str] = dictionary.pop(dollars)
+    question: tuple[str, tuple] = dictionary.pop(dollars)
     reward: int = 0
     answer: str = input(question[0] + " ")
     reward: int = 0
@@ -107,7 +107,7 @@ while money < 4500 and len(categories) > 0:
     cat: str = "|          Wonders | Food | Books | Pop Culture | Music          |"
     for i, category_name in enumerate(categories):
         if len(categories.get(category_name)) == 0:
-            cat = cat.lower().replace(category_name, "-" * len(category_name))
+            cat = cat.replace(category_name.title(), "-" * len(category_name))
     print(cat)
     print("+------------------+------+-------+-------------+----------------+")
     # Prompt user for the category, looping back if it doesn't match a category
@@ -119,6 +119,6 @@ while money < 4500 and len(categories) > 0:
         print("Please input a valid category as shown above!")
     money += ask_question()
 if money >= 4500:
-    print(f"Congratulations! You have reached the end of Jeopardy. You finished with a grand total of {money} dollars!")
+    print(f"Congratulations! You have reached the end of Jeopardy.\nYou finished with a grand total of {money} dollars!")
 else:
     print(f"You lose!\nYou ran out of questions and only made {money} dollars.")
