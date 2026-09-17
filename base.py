@@ -107,7 +107,7 @@ while money < 4500 and len(categories) > 0:
     cat: str = "|          Wonders | Food | Books | Pop Culture | Music          |"
     for i, category_name in enumerate(categories):
         if len(categories.get(category_name)) == 0:
-            cat = cat.lower().replace(category_name, "-" * len(category_name))
+            cat = cat.replace(category_name.title(), "-" * len(category_name))
     print(cat)
     print("+------------------+------+-------+-------------+----------------+")
     # Prompt user for the category, looping back if it doesn't match a category
