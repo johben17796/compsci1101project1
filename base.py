@@ -8,9 +8,9 @@ https://docs.python.org/3/library/stdtypes.html
 https://docs.python.org/3/tutorial/controlflow.html
 """
 
-"""
-Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
-"""
+
+#Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
+
 wonders: dict[str, tuple[str, str]] = {
     "100": ("The ancient wonder in Egypt:\n", "pyramid"),
     "200": ("The place the hanging gardens were:\n", "babylon"),
@@ -46,13 +46,13 @@ music: dict[str, tuple[str, str]] = {
     "400": ('"Never forget." Not this tragic day, but this other important September date:\n', "21"),
     "500": ("This band released the song Seven Wonders in 1987.\n They likely had more than seven break-ups:\n", "fleetwood mac")}
 
-
 categories: dict[str, dict[str, tuple[str, str]]] = {
     "wonders": wonders,
     "food": food,
     "books": books,
     "pop culture": pop_culture,
     "music": music}
+
 money: int = 0
 
 def ask_dollar_amount(dictionary: dict):
@@ -93,6 +93,7 @@ def ask_question():
         print(f"Incorrect! You now have {money + reward} dollars.")
     return reward
 
+#this runs the game until someone runs out of questions or earns a total of $4500
 first_time: bool = True
 while money < 4500 and len(categories) > 0:
     if first_time:
