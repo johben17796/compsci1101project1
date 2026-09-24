@@ -80,11 +80,15 @@ def ask_dollar_amount(dictionary: dict):
 def ask_question():
     dictionary: dict = categories.get(category)
     dollars: str = ask_dollar_amount(dictionary)
-    question: tuple[str, tuple] = dictionary.pop(dollars)
+    question: tuple[str, tuple] = dictionary.pop(dollars) #gets rid of category when exhausted
     reward: int = 0
     answer: str = input(question[0])
     reward: int = 0
 
+    """
+    if the answer is anywhere in the string, with any capitalization, add money.
+    # else, remove money
+    """
     if question[1] in answer.lower():
         reward += int(dollars)
         print(f"Correct! You now have {money + reward} dollars.")
