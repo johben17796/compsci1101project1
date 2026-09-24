@@ -55,7 +55,7 @@ categories: dict[str, dict[str, tuple[str, str]]] = {
 
 money: int = 0
 
-def ask_dollar_amount(dictionary: dict):
+def ask_dollar_amount(dictionary: dict[str, tuple[str, str]]):
     numbers: str = "|      100    |    200    |    300    |    400    |    500       |"
     # Blank out the dollar amounts for already answered questions
     for i in range(5):
@@ -78,9 +78,9 @@ def ask_dollar_amount(dictionary: dict):
     return output
 
 def ask_question():
-    dictionary: dict = categories.get(category)
+    dictionary: dict[str, tuple[str, str]] = categories.get(category)
     dollars: str = ask_dollar_amount(dictionary)
-    question: tuple[str, tuple] = dictionary.pop(dollars) #gets rid of category when exhausted
+    question: tuple[str, str] = dictionary.pop(dollars) #gets rid of category when exhausted
     reward: int = 0
     answer: str = input(question[0])
     reward: int = 0
