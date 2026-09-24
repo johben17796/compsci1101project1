@@ -82,7 +82,7 @@ def ask_question():
     dollars: str = ask_dollar_amount(dictionary)
     question: tuple[str, tuple] = dictionary.pop(dollars)
     reward: int = 0
-    answer: str = input(question[0] + " ")
+    answer: str = input(question[0])
     reward: int = 0
 
     if question[1] in answer.lower():
@@ -105,7 +105,7 @@ while money < 4500 and len(categories) > 0:
         print("|         Welcome back to Jeopardy! Your categories are:         |")
     print("+------------------+------+-------+-------------+----------------+")
     cat: str = "|          Wonders | Food | Books | Pop Culture | Music          |"
-    for i, category_name in enumerate(categories):
+    for category_name in categories:
         if len(categories.get(category_name)) == 0:
             cat = cat.replace(category_name.title(), "-" * len(category_name))
     print(cat)
