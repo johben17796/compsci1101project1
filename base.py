@@ -12,10 +12,10 @@ https://docs.python.org/3/tutorial/controlflow.html
 Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
 """
 wonders: dict[str, tuple[str, str]] = {
-    # "100": ("The ancient wonder in Egypt:\n", "pyramid"),
-    # "200": ("The place the hanging gardens were:\n", "babylon"),
-    # "300": ("It spans 13,000 miles:\n", "wall"),
-    # "400": ("He's the 8th wonder of the world:\n", "andre"),
+    "100": ("The ancient wonder in Egypt:\n", "pyramid"),
+    "200": ("The place the hanging gardens were:\n", "babylon"),
+    "300": ("It spans 13,000 miles:\n", "wall"),
+    "400": ("He's the 8th wonder of the world:\n", "andre"),
     "500": ("The wondrous statue of this god was erected by Phidias:\n", "zeus")}
 
 food: dict[str, tuple[str, str]] = {
@@ -42,7 +42,7 @@ pop_culture: dict[str, tuple[str, str]] = {
 music: dict[str, tuple[str, str]] = {
     "100": ("Not the son of a king, but this musician: \n", "prince"),
     "200": ("Band named for a horror movie that was released in 1963:\n", "black sabbath"),
-    "300": ("Both Joan Jett and Thin Lizzy have a bad \"this\"\n, Taylor Swift had an era named after it", "reputation"),
+    "300": ("Both Joan Jett and Thin Lizzy have a bad \"this\",\n Taylor Swift had an era named after it\n", "reputation"),
     "400": ('"Never forget." Not this tragic day, but this other important September date:\n', "21"),
     "500": ("This band released the song Seven Wonders in 1987.\n They likely had more than seven break-ups:\n", "fleetwood mac")}
 
