@@ -55,7 +55,8 @@ categories: dict[str, dict[str, tuple[str, str]]] = {
     "music": music}
 
 daily_double = random.randint(0, 24)
-print(f"Daily double is {daily_double}")
+print(f"Daily double is {daily_double}") # comment this out for final push, for testing.
+
 money: int = 0
 
 
@@ -100,7 +101,16 @@ def double_wager(user_money: int) -> str:
     """
     if user_money < 1000:
         user_money = 1000
-    wager = input(f"How much would you like to wager?\n You can wager up to ${user_money}\n")
+    wager: str = input(f"How much would you like to wager?\nYou can wager up to ${user_money}\n")
+    while True:
+        try:
+            testing_val = int(wager)
+            if testing_val > user_money:
+                wager = input(f"You cannot bet that high! Try again\nYou can wager up to ${user_money}\n")
+            else:
+                break
+        except:
+            wager = input(f"That is not a number, try again\nYou can wager up to ${user_money}\n")
     return wager
 
 def ask_question():
