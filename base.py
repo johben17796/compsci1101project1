@@ -8,6 +8,7 @@ https://docs.python.org/3/library/stdtypes.html
 https://docs.python.org/3/tutorial/controlflow.html
 """
 
+import random
 
 #Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
 
@@ -53,6 +54,8 @@ categories: dict[str, dict[str, tuple[str, str]]] = {
     "pop culture": pop_culture,
     "music": music}
 
+daily_double = random.randint(0, 24)
+print(f"Daily double is {daily_double}")
 money: int = 0
 
 def ask_dollar_amount(dictionary: dict[str, tuple[str, str]]):
@@ -75,6 +78,9 @@ def ask_dollar_amount(dictionary: dict[str, tuple[str, str]]):
         print("+-------------+-----------+-----------+-----------+--------------+")
         print("|               Please choose a number shown above               |")
         print("+-------------+-----------+-----------+-----------+--------------+")
+    answer_index = (list(categories.keys()).index(category) * 5) + ((int(output) - 1) // 100)
+    if (answer_index == daily_double):
+        print("You've just hit the daily double!")
     return output
 
 def ask_question():
