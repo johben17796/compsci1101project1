@@ -116,6 +116,8 @@ def double_wager(user_money: int) -> str:
 def ask_question():
     dictionary: dict[str, tuple[str, str]] = categories.get(category)
     dollars: str = ask_dollar_amount(dictionary)
+    # this guy does double jeopardy
+    #             V
     answer_index = (list(categories.keys()).index(category) * 5) + ((int(dollars) - 1) // 100)
     question: tuple[str, str] = dictionary.pop(dollars) #gets rid of category when exhausted
     if (answer_index == daily_double):
