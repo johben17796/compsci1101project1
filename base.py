@@ -58,6 +58,7 @@ daily_double = random.randint(0, 24)
 print(f"Daily double is {daily_double}")
 money: int = 0
 
+
 def ask_dollar_amount(dictionary: dict[str, tuple[str, str]]):
     numbers: str = "|      100    |    200    |    300    |    400    |    500       |"
     # Blank out the dollar amounts for already answered questions
@@ -78,15 +79,38 @@ def ask_dollar_amount(dictionary: dict[str, tuple[str, str]]):
         print("+-------------+-----------+-----------+-----------+--------------+")
         print("|               Please choose a number shown above               |")
         print("+-------------+-----------+-----------+-----------+--------------+")
-    answer_index = (list(categories.keys()).index(category) * 5) + ((int(output) - 1) // 100)
-    if (answer_index == daily_double):
-        print("You've just hit the daily double!")
+    
     return output
+
+def double_wager(user_money: int) -> str:
+    """
+    Asks the contestant for a wager, up to either their current amount
+    of money, or 1000 dollars if they have less 
+
+    Parameters
+    ----------
+    user_money : int
+        The amount of money the user has already earned.
+
+    Returns
+    -------
+    str
+        returns a string to be used in the ask_question function as the new
+        dollars, as opposed to the questions original value.
+    """
+    if user_money < 1000:
+        user_money = 1000
+    wager = input(f"How much would you like to wager?\n You can wager up to ${user_money}\n")
+    return wager
 
 def ask_question():
     dictionary: dict[str, tuple[str, str]] = categories.get(category)
     dollars: str = ask_dollar_amount(dictionary)
+    answer_index = (list(categories.keys()).index(category) * 5) + ((int(dollars) - 1) // 100)
     question: tuple[str, str] = dictionary.pop(dollars) #gets rid of category when exhausted
+    if (answer_index == daily_double):
+        print("You've just hit the daily double!")
+        dollars = double_wager(money)
     reward: int = 0
     answer: str = input(question[0])
     reward: int = 0
