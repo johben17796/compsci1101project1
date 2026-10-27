@@ -60,7 +60,21 @@ print(f"Daily double is {daily_double}") # comment this out for final push, for 
 money: int = 0
 
 
-def ask_dollar_amount(dictionary: dict[str, tuple[str, str]]):
+def ask_dollar_amount(dictionary: dict[str, tuple[str, str]]) -> str:
+    """
+    Called to ask for a dollar amount from the player and handle the input
+
+    Parameters
+    ----------
+    dictionary : dict[str, tuple[str, str]]
+        The dictionary of the category is passed into the function.
+    
+    Returns
+    -------
+    str
+        The output string is just the selected dollar price as a string. 
+        Gets fed into the ask_question function.
+    """
     numbers: str = "|      100    |    200    |    300    |    400    |    500       |"
     # Blank out the dollar amounts for already answered questions
     for i in range(5):
