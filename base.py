@@ -55,7 +55,6 @@ categories: dict[str, dict[str, tuple[str, str]]] = {
     "music": music}
 
 daily_double = random.randint(0, 24)
-print(f"Daily double is {daily_double}") # comment this out for final push, for testing.
 
 money: int = 0
 
@@ -113,6 +112,7 @@ def double_wager(user_money: int) -> str:
         returns a string to be used in the ask_question function as the new
         dollars, as opposed to the questions original value.
     """
+
     if user_money < 1000:
         user_money = 1000
     wager: str = input(f"How much would you like to wager?\nYou can wager up to ${user_money}\n")
