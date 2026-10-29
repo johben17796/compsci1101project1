@@ -115,19 +115,29 @@ def double_wager(user_money: int) -> str:
 
     if user_money < 1000:
         user_money = 1000
-    wager: str = input(f"How much would you like to wager?\nYou can wager up to ${user_money}\n")
+    print(f"How much would you like to wager?\nYou can wager up to ${user_money}")
     while True:
         try:
-            testing_val = int(wager)
-            if testing_val > user_money:
-                wager = input(f"You cannot bet that high! Try again\nYou can wager up to ${user_money}\n")
-            else:
-                break
-        except:
-            wager = input(f"That is not a number, try again\nYou can wager up to ${user_money}\n")
+            wager: str = input()
+            if not (0 < int(wager) <= user_money):
+                raise IndexError
+            break
+        except IndexError:
+            print(f"You cannot bet that much! Try again.\nYou can wager up to ${user_money}")
+        except ValueError:
+            print(f"That is not a number, Try again.\nYou can wager up to ${user_money}")
     return wager
 
-def ask_question():
+def ask_question() -> int:
+    """
+    Asks the user the question, removing the entry from the category dictionary in the process.
+    If the question asked is the daily double, the user is redirected to ``base.double_wager``
+
+    Returns
+    -------
+    int
+        The reward the player received for answering the question. Can be negative.
+    """
     dictionary: dict[str, tuple[str, str]] = categories.get(category)
     dollars: str = ask_dollar_amount(dictionary)
     # this guy does double jeopardy
@@ -141,10 +151,7 @@ def ask_question():
     answer: str = input(question[0])
     reward: int = 0
 
-    """
-    if the answer is anywhere in the string, with any capitalization, add money.
-    # else, remove money
-    """
+    # if the answer is in the string, with any capitalization, add money. other, remove money
     if question[1] in answer.lower():
         reward += int(dollars)
         print(f"Correct! You now have {money + reward} dollars.")
