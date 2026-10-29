@@ -57,7 +57,9 @@ categories: dict[str, dict[str, tuple[str, str]]] = {
 daily_double = random.randint(0, 24)
 
 money: int = 0
-
+"""
+test
+"""
 
 def ask_dollar_amount(dictionary: dict[str, tuple[str, str]]) -> str:
     """
