@@ -157,35 +157,36 @@ def ask_question() -> int:
     return reward
 
 #this runs the game until someone runs out of questions or earns a total of $4500
-first_time: bool = True
-while len(categories) > 0 and money < 100:
-    welcome: DisplayBox = DisplayBox()
-    if first_time:
-        welcome.add_text("Welcome to Jeopardy! Collect as much money as possible by")
-        welcome.add_text("answering questions correctly! Your categories are:")
-        first_time = False
+def main() -> None:   
+    first_time: bool = True
+    while len(categories) > 0 and money < 100:
+        welcome: DisplayBox = DisplayBox()
+        if first_time:
+            welcome.add_text("Welcome to Jeopardy! Collect as much money as possible by")
+            welcome.add_text("answering questions correctly! Your categories are:")
+            first_time = False
+        else:
+            welcome.add_text("Welcome back to Jeopardy! Your categories are:")
+        welcome.add_separator()
+        cat: str = "Wonders | Food | Books | Pop Culture | Music"
+        for category_name in categories:
+            if len(categories.get(category_name)) == 0:
+                cat = cat.replace(category_name.title(), "-" * len(category_name))
+        welcome.add_text(cat)
+        print(welcome)
+        # Prompt user for the category, looping back if it doesn't match a category
+        category: str = ""
+        while True:
+            category = input("> ").lower()
+            if category in categories and len(categories.get(category)) > 0:
+                break
+            print("Please input a valid category as shown above!")
+        money += ask_question()
+    if money >= 4500:
+        print(f"Congratulations! You have reached the end of Jeopardy.\nYou finished with a grand total of {money} dollars!")
     else:
-        welcome.add_text("Welcome back to Jeopardy! Your categories are:")
-    welcome.add_separator()
-    cat: str = "Wonders | Food | Books | Pop Culture | Music"
-    for category_name in categories:
-        if len(categories.get(category_name)) == 0:
-            cat = cat.replace(category_name.title(), "-" * len(category_name))
-    welcome.add_text(cat)
-    print(welcome)
-    # Prompt user for the category, looping back if it doesn't match a category
-    category: str = ""
-    while True:
-        category = input("> ").lower()
-        if category in categories and len(categories.get(category)) > 0:
-            break
-        print("Please input a valid category as shown above!")
-    money += ask_question()
-if money >= 4500:
-    print(f"Congratulations! You have reached the end of Jeopardy.\nYou finished with a grand total of {money} dollars!")
-else:
-    #TODO. Allow a player to enter their name.
-    print(f"You lose!\nYou ran out of questions and only made {money} dollars.") #NOTE EDIT THIS TO MAKE MORE SENSE!!!
+        #TODO. Allow a player to enter their name.
+        print(f"You lose!\nYou ran out of questions and only made {money} dollars.") #NOTE EDIT THIS TO MAKE MORE SENSE!!!
 try:
     leaderboard_file: TextIO = open("jeopardy_leaderboard.txt", "r+", encoding="UTF-8")
 except IOError:
@@ -202,6 +203,9 @@ finally:
         scores = line.split(" | ") # pipe as seperator because that is consistent with the way the categories and values are laid out
         print(scores)
         score[scores[0]] = int(scores[1].strip(" $"))
+    #TODO: Add a sort of the scores
+    #TODO: make this a function
+    #TODO: allow a user to add their name and their score to the leaderboard
     leaderboard_file.close()
 
     
@@ -210,5 +214,5 @@ finally:
 
 
 
-# if __name__ == "__main__":
-#     main() # fill this out DO NOT FORGET!!!! make it a main funciton!
+if __name__ == "__main__":
+    main() # fill this out DO NOT FORGET!!!! make it a main funciton!
