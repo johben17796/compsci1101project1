@@ -187,26 +187,22 @@ else:
     #TODO. Allow a player to enter their name.
     print(f"You lose!\nYou ran out of questions and only made {money} dollars.") #NOTE EDIT THIS TO MAKE MORE SENSE!!!
 try:
-    leaderboard_file: TextIO = open("jeopardy_leaderboard.txt", "x+", encoding="UTF-8")
+    leaderboard_file: TextIO = open("jeopardy_leaderboard.txt", "r+", encoding="UTF-8")
+except IOError:
+    print("No leaderboard already exists, creating default...")
+    leaderboard_file: TextIO = open("jeopardy_leaderboard.txt", "w+", encoding="UTF-8")
+    leaderboard_file.writelines(["Garrett | $3700\n", "Ollie | $2500\n", "Ben | $2100\n"])
+    leaderboard_file.seek(0)
+finally:
     lines: list[str] = leaderboard_file.readlines()
     print(lines)
     line: str
-    score: dict{str, int} = {}
+    score: dict[str, int] = {}
     for line in lines:
-        scores = line.split("|") # pipe as seperator because that is consistent with the way the categories and values are laid out
+        scores = line.split(" | ") # pipe as seperator because that is consistent with the way the categories and values are laid out
         print(scores)
         score[scores[0]] = int(scores[1].strip(" $"))
-
-except:
-#     print("WEEWOO WEEWOO ERROR")
-#     # TODO: Create Default Leaderboard if there is no jeopardy_leaderboard.txt    
-    new_file: TextIO = open("jeopardy_leaderboard.txt", "w", encoding="UTF-8")
-    default1 = "Garrett | $3700\n"
-    default2 = "Ollie | $2500\n"
-    default3 = "Ben | $2100\n"
-    new_file.write(default1)
-    new_file.write(default2)
-    new_file.write(default3)
+    leaderboard_file.close()
 
     
         
