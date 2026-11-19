@@ -9,6 +9,7 @@ https://docs.python.org/3/tutorial/controlflow.html
 """
 
 import random
+from display_box import DisplayBox
 
 #Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
 
@@ -70,28 +71,24 @@ def ask_dollar_amount(dictionary: dict[str, tuple[str, str]]) -> str:
     Returns
     -------
     str
-        The output string is just the selected dollar price as a string. 
+        The output is the selected dollar reward as a string. 
         Gets fed into the ask_question function.
     """
-    numbers: str = "|      100    |    200    |    300    |    400    |    500       |"
+    numbers: str = "100    |    200    |    300    |    400    |    500"
     # Blank out the dollar amounts for already answered questions
     for i in range(5):
         if f"{(i + 1) * 100}" not in dictionary:
             numbers = numbers.replace(f"{(i + 1) * 100}", "---")
-    print("+----------------------------------------------------------------+")
-    print("|   Now, please choose a $ amount question. Your options are:    |")
-    print("+-------------+-----------+-----------+-----------+--------------+")
-    print(numbers)
-    print("+-------------+-----------+-----------+-----------+--------------+")
+    print(DisplayBox("Now, please choose a $ amount. Your options are:")
+    .add_separator()
+    .add_text(numbers))
     # Prompt user for the dollar amount, looping back if it is unavailable
     output: str = ""
     while True:
         output = input("> ")
         if output in dictionary:
             break
-        print("+-------------+-----------+-----------+-----------+--------------+")
-        print("|               Please choose a number shown above               |")
-        print("+-------------+-----------+-----------+-----------+--------------+")
+        print(DisplayBox("Please choose a number shown above"))
     
     return output
 
@@ -162,21 +159,20 @@ def ask_question() -> int:
 #this runs the game until someone runs out of questions or earns a total of $4500
 first_time: bool = True
 while money < 4500 and len(categories) > 0:
+    welcome: DisplayBox = DisplayBox()
     if first_time:
-        print("+----------------------------------------------------------------+")
-        print("|   Welcome to Jeopardy! Collect as much money as possible by    |")
-        print("|     answering questions correctly! Your categories are:        |")
+        welcome.add_text("Welcome to Jeopardy! Collect as much money as possible by")
+        welcome.add_text("answering questions correctly! Your categories are:")
         first_time = False
     else:
-        print("+----------------------------------------------------------------+")
-        print("|         Welcome back to Jeopardy! Your categories are:         |")
-    print("+------------------+------+-------+-------------+----------------+")
-    cat: str = "|          Wonders | Food | Books | Pop Culture | Music          |"
+        welcome.add_text("Welcome back to Jeopardy! Your categories are:")
+    welcome.add_separator()
+    cat: str = "Wonders | Food | Books | Pop Culture | Music"
     for category_name in categories:
         if len(categories.get(category_name)) == 0:
             cat = cat.replace(category_name.title(), "-" * len(category_name))
-    print(cat)
-    print("+------------------+------+-------+-------------+----------------+")
+    welcome.add_text(cat)
+    print(welcome)
     # Prompt user for the category, looping back if it doesn't match a category
     category: str = ""
     while True:
