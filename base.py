@@ -10,7 +10,7 @@ https://docs.python.org/3/tutorial/controlflow.html
 
 import random
 from display_box import DisplayBox
-
+from typing import TextIO
 #Each entry in the dictionaries corresponds to a dollar amount key with a tuple value for both the question and the answer. 
 
 wonders: dict[str, tuple[str, str]] = {
@@ -158,7 +158,7 @@ def ask_question() -> int:
 
 #this runs the game until someone runs out of questions or earns a total of $4500
 first_time: bool = True
-while money < 4500 and len(categories) > 0:
+while len(categories) > 0:
     welcome: DisplayBox = DisplayBox()
     if first_time:
         welcome.add_text("Welcome to Jeopardy! Collect as much money as possible by")
@@ -184,4 +184,26 @@ while money < 4500 and len(categories) > 0:
 if money >= 4500:
     print(f"Congratulations! You have reached the end of Jeopardy.\nYou finished with a grand total of {money} dollars!")
 else:
-    print(f"You lose!\nYou ran out of questions and only made {money} dollars.")
+    #TODO. Allow a player to enter their name.
+    print(f"You lose!\nYou ran out of questions and only made {money} dollars.") #NOTE EDIT THIS TO MAKE MORE SENSE!!!
+# try:
+#     leaderboard_file: TextIO = open("jeopardy_leaderboard.csv", "x", encoding="UTF-8")
+#     lines: list[str] = leaderboard_file.readlines()
+#     print(lines)
+#     line: str
+#     for line in lines:
+#         scores = line.split("|") # pipe as seperator because that is consistent with the way the categories and values are laid out
+#         print(scores)
+
+# except:
+# #     print("WEEWOO WEEWOO ERROR")
+# #     # TODO: Create Default Leaderboard if there is no jeopardy_leaderboard.txt    
+
+    
+        
+    
+
+
+
+# if __name__ == "__main__":
+#     main() # fill this out DO NOT FORGET!!!! make it a main funciton!
