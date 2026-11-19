@@ -158,7 +158,7 @@ def ask_question() -> int:
 
 #this runs the game until someone runs out of questions or earns a total of $4500
 first_time: bool = True
-while len(categories) > 0:
+while len(categories) > 0 and money < 100:
     welcome: DisplayBox = DisplayBox()
     if first_time:
         welcome.add_text("Welcome to Jeopardy! Collect as much money as possible by")
@@ -186,18 +186,27 @@ if money >= 4500:
 else:
     #TODO. Allow a player to enter their name.
     print(f"You lose!\nYou ran out of questions and only made {money} dollars.") #NOTE EDIT THIS TO MAKE MORE SENSE!!!
-# try:
-#     leaderboard_file: TextIO = open("jeopardy_leaderboard.csv", "x", encoding="UTF-8")
-#     lines: list[str] = leaderboard_file.readlines()
-#     print(lines)
-#     line: str
-#     for line in lines:
-#         scores = line.split("|") # pipe as seperator because that is consistent with the way the categories and values are laid out
-#         print(scores)
+try:
+    leaderboard_file: TextIO = open("jeopardy_leaderboard.txt", "x+", encoding="UTF-8")
+    lines: list[str] = leaderboard_file.readlines()
+    print(lines)
+    line: str
+    score: dict{str, int} = {}
+    for line in lines:
+        scores = line.split("|") # pipe as seperator because that is consistent with the way the categories and values are laid out
+        print(scores)
+        score[scores[0]] = int(scores[1].strip(" $"))
 
-# except:
-# #     print("WEEWOO WEEWOO ERROR")
-# #     # TODO: Create Default Leaderboard if there is no jeopardy_leaderboard.txt    
+except:
+#     print("WEEWOO WEEWOO ERROR")
+#     # TODO: Create Default Leaderboard if there is no jeopardy_leaderboard.txt    
+    new_file: TextIO = open("jeopardy_leaderboard.txt", "w", encoding="UTF-8")
+    default1 = "Garrett | $3700\n"
+    default2 = "Ollie | $2500\n"
+    default3 = "Ben | $2100\n"
+    new_file.write(default1)
+    new_file.write(default2)
+    new_file.write(default3)
 
     
         
